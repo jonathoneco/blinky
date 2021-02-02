@@ -4,20 +4,15 @@
 
 
 void PatternHSV::init() {
-    FastLED.setBrightness(20);
+    FastLED.setBrightness(BRIGHTNESS_MAX);
 
-    color = CHSV(0, 255, 255);
-    
-    cnt = 0;
+    UI.addParam("HUE", {0, 255, 2, true, 0});
+    UI.addParam("SATURATION", {0, 255, 5, false, 255});
+    UI.addParam("VALUE", {0, 255, 5, false, 255});
 }
 
 void PatternHSV::update() {
-    if (cnt == 0) color.hue += SHIFT_RATE;
-
     for (int i = 0; i < NUM_LEDS; i++) {
-        leds[i] = color;
+        leds[i] = CHSV(UI.getParam("HUE"), UI.getParam("SATURATION"), UI.getParam("VALUE"));
     }
-
-    cnt++;
-    if (cnt == SHIFT_CNT) cnt = 0;
 }

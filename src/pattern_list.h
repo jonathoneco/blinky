@@ -20,5 +20,5 @@ Factory *patternFactories[NUM_PATTERNS];
 void patternInit() {
     ADD_PATTERN(0, PatternStars, "Stars");
     ADD_PATTERN(1, PatternWhiteDot, "White dot");
-    ADD_PATTERN(2, PatternHSV, "Solid hue");
+    ADD_PATTERN(2, PatternHSV, "HSV");
 }
