@@ -4,8 +4,10 @@
 void ScrollView::show(Display *disp) {
     disp->blank();
 
-    for (unsigned short line = 0; line < entries.size(); line++) {
-        disp->putText(entries.at(line), line, (line == scroll_pos));
+    // If we've scrolled far, start the view with an offset so everything fits
+    unsigned short startline = max(0, scroll_pos - MAX_LINE + 2);
+    for (unsigned short line = startline; line < entries.size(); line++) {
+        disp->putText(entries.at(line), line - startline, (line == scroll_pos));
     }
 
     disp->putHeader(title);

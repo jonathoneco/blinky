@@ -7,8 +7,20 @@ void PatternView::show(Display *disp) {
     // First entry is back button
     disp->putText("BACK", 0, current_param == params.end());
 
+    // If we've scrolled far, change the start of the list to 2 items before the current param.
+    // If current_param == params.end(), that means we're on the back button, so ignore.
+    std::map<String, PatternParam>::iterator start_param;
+    if (distance(params.begin(), current_param) > MAX_LINE - 3 && current_param != params.end()) {
+        start_param = current_param;
+        start_param--;
+        start_param--;
+    } else {
+        start_param = params.begin();
+    }
+
     unsigned short line = 1;
-    for (auto param = params.begin(); param != params.end(); param++) {
+    for (auto param = start_param; param != params.end(); param++) {
+        // Don't start displaying until current_param will be within view
         String text;
         if (focused && (param == current_param)) {
             text = "> " + param->first + ": " + String(param->second.val);
