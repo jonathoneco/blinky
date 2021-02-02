@@ -20,6 +20,8 @@ void setup() {
     Serial.begin(9600);
 #endif
 
+    randomSeed(analogRead(13));
+
     lights.loadPattern(currentPattern);
 }
 
