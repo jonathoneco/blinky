@@ -8,7 +8,7 @@ void PatternHSV::init() {
 
     UI.addParam("HUE", {0, 255, 2, true, 0});
     UI.addParam("SATURATION", {0, 255, 5, false, 255});
-    UI.addParam("VALUE", {0, 255, 5, false, 255});
+    UI.addParam("VALUE", {0, 255, 5, false, 127});
 }
 
 void PatternHSV::update() {
