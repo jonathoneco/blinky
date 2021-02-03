@@ -52,7 +52,7 @@ All patterns (and header files) should be in `src/patterns/`.
 ### Writing Pixels
 
 You can set LEDs by setting elements of the global `leds[]` array to `CRGB` or `CHSV` values (see [FastLED](https://github.com/FastLED/FastLED/wiki/Pixel-reference)).
-A helpful macro `LED_LOOP(i)` is provided to remap the indexes of the two strips into a closed loop.
+Some helpful macros are provided. `LED_LOOP(i)` remaps the indexes of the two strips into a closed loop, and `FROM_LEFT(i)` and `FROM_RIGHT(i)` index along sides of the hallway.
 All the LEDs will be blanked (set to black) before the pattern is loaded.
 
 ### Pattern Parameters
