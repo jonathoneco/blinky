@@ -46,7 +46,9 @@ void PatternDrift::startOver() {
 
     step = 0;
 
+    int center = random(NUM_LEDS);
     for (int i = 0; i < NUM_LEDS; i++) {
-        steps[i] = random(STEPS_MIN, STEPS_MAX);
+        int dist_from_center = abs(center - i);
+        steps[i] = dist_from_center * 50 + random(STEPS_MIN, STEPS_MAX);
     }
 }
