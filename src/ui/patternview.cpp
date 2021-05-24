@@ -115,12 +115,12 @@ bool PatternView::shouldExit() {
 
 int restrictVal(int val, int min_val, int max_val, bool loop) {
     if (val > max_val) {
-        if (loop) val = min_val + (val - max_val);
+        if (loop) val = min_val;
         else val = max_val;
     }
 
     if (val < min_val) {
-        if (loop) val = max_val + (val - min_val);
+        if (loop) val = max_val;
         else val = min_val;
     }
 
