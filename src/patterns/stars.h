@@ -9,4 +9,6 @@ class PatternStars : public Pattern {
 public:
     void init();
     void update();
+private:
+    bool event_ongoing = false;
 };

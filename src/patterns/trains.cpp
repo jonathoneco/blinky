@@ -20,7 +20,7 @@ void PatternTrains::init() {
     FastLED.setBrightness(BRIGHTNESS_MAX);
 
     UI.addParam("TRAINS", {1, TOTAL_TRAINS, 1, false, 10});
-    UI.addParam("SPEED", {1, 20, 1, false, 7});
+    UI.addParam("SPEED", {1, 10, 1, false, 3});
     UI.addParam("TAIL_LENGTH", {5, 150, 5, false, 50});
 
     for (int i = 0; i < TOTAL_TRAINS; i++) {

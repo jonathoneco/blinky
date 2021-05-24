@@ -6,8 +6,8 @@
 #define V_MAX 256
 #define V_MIN 100
 
-#define STEPS_MIN 500
-#define STEPS_MAX 5000
+#define STEPS_MIN 1000
+#define STEPS_MAX 4000
 
 class PatternDrift : public Pattern {
 public:
