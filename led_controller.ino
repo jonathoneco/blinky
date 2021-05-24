@@ -1,5 +1,6 @@
 #define debug
 
+#include <TimeLib.h>
 
 #include "src/common.h"
 
@@ -19,6 +20,7 @@ void setup() {
 #ifdef debug
     Serial.begin(9600);
 #endif
+    setSyncProvider(Teensy3Clock.get);
 
     randomSeed(analogRead(13));
 
