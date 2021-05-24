@@ -46,7 +46,7 @@ void PatternTrains::update() {
         if (speed == 0) speed = signum(train->speed);
         train->pos = (train->pos + speed + NUM_LEDS) % NUM_LEDS;
 
-        leds[LED_LOOP(train->pos)] = CHSV(train->hue, 255, 255);
+        leds[FROM_LEFT(train->pos)] = CHSV(train->hue, 255, 255);
 
         int tail_dir = -signum(train->speed);
 
@@ -57,9 +57,9 @@ void PatternTrains::update() {
 
             int led_idx = (j + NUM_LEDS) % NUM_LEDS;
 
-            leds[LED_LOOP(led_idx)].r += newCol.r;
-            leds[LED_LOOP(led_idx)].g += newCol.g;
-            leds[LED_LOOP(led_idx)].b += newCol.b;
+            leds[FROM_LEFT(led_idx)].r += newCol.r;
+            leds[FROM_LEFT(led_idx)].g += newCol.g;
+            leds[FROM_LEFT(led_idx)].b += newCol.b;
         }
     }
 }

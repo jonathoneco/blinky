@@ -12,12 +12,12 @@ void PatternWhiteDot::init() {
 }
 
 void PatternWhiteDot::update() {
-    leds[LED_LOOP(pos)] = CRGB::Black;
+    leds[FROM_LEFT(pos)] = CRGB::Black;
 
     /* pos++; */
     /* if (pos == NUM_LEDS) pos = 0; */
 
     pos = UI.getParam("POSITION");
 
-    leds[LED_LOOP(pos)] = CRGB::White;
+    leds[FROM_LEFT(pos)] = CRGB::White;
 }

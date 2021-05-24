@@ -24,7 +24,7 @@ void PatternDrift::update() {
 
             int v = map(step, 0, steps[i], old_val, new_val);
 
-            leds[i] = CHSV(h, 255, v);
+            leds[FROM_LEFT(i)] = CHSV(h, 255, v);
 
             done = false;
         }
