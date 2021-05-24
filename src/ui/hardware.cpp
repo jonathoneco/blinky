@@ -9,11 +9,13 @@ Hardware::Hardware() {
 }
 
 
-void Hardware::update() {
-    bouncer->update();
+bool Hardware::update() {
+    bool btn_change = bouncer->update();
 
     enc_prev = enc_pos;
     enc_pos = enc->read() / 4;
+
+    return (btn_change || (enc_pos != enc_prev));
 }
 
 

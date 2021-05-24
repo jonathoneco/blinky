@@ -22,10 +22,14 @@ class Display {
 public:
     Display();
     void show();
+    void turn_off();
+    void turn_on();
 
     void blank();
     void putHeader(String text);
     void putText(String text, int line, bool hl);
 private:
     Adafruit_SSD1306 oled;
+
+    bool disp_on = true;
 };

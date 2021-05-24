@@ -8,7 +8,7 @@ class Hardware {
 public:
     Hardware();
 
-    void update();
+    bool update();
 
     void set_enc(long pos);
     long read_enc();

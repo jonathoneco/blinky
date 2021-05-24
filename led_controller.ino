@@ -23,6 +23,8 @@ void setup() {
     randomSeed(analogRead(13));
 
     lights.loadPattern(currentPattern);
+
+    UI.show();
 }
 
 
@@ -35,8 +37,6 @@ void loop() {
     }
 
     lights.update();
-
-    UI.show();
     lights.show();
 
     delay(1);

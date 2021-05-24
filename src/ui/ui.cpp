@@ -5,6 +5,8 @@ UserInterface::UserInterface() {
 
     currentPattern = 0;
     onMainMenu = true;
+
+    last_active = millis();
 }
 
 
@@ -18,25 +20,34 @@ void UserInterface::show() {
 
 
 void UserInterface::update() {
-    hw.update();
+    if (hw.update()) {
+        disp.turn_on();
+        last_active = millis(); // reset display blanking timer
 
-    if (onMainMenu) {
-        if (hw.encIncrease()) mainMenu.scrollForward();
-        if (hw.encDecrease()) mainMenu.scrollBack();
+        if (onMainMenu) {
+            if (hw.encIncrease()) mainMenu.scrollForward();
+            if (hw.encDecrease()) mainMenu.scrollBack();
 
-        if (hw.buttonPress()) {
-            currentPattern = mainMenu.getSelected();
-            patternViews.at(currentPattern).resetScroll();
-            onMainMenu = false;
+            if (hw.buttonPress()) {
+                currentPattern = mainMenu.getSelected();
+                patternViews.at(currentPattern).resetScroll();
+                onMainMenu = false;
+            }
+        } else {
+            if (hw.encIncrease()) patternViews.at(currentPattern).encoderInc();
+            if (hw.encDecrease()) patternViews.at(currentPattern).encoderDec();
+            if (hw.buttonPress()) patternViews.at(currentPattern).buttonPress();
+
+            if (patternViews.at(currentPattern).shouldExit()) {
+                onMainMenu = true;
+            }
         }
-    } else {
-        if (hw.encIncrease()) patternViews.at(currentPattern).encoderInc();
-        if (hw.encDecrease()) patternViews.at(currentPattern).encoderDec();
-        if (hw.buttonPress()) patternViews.at(currentPattern).buttonPress();
 
-        if (patternViews.at(currentPattern).shouldExit()) {
-            onMainMenu = true;
-        }
+        show();
+    }
+
+    if ((millis() - last_active) >= SLEEP_TIME) { // display blanking on inactivity
+        disp.turn_off();
     }
 }
 

@@ -20,7 +20,21 @@ Display::Display() {
 
 
 void Display::show() {
-    oled.display();
+    if (disp_on) {
+        oled.display();
+    }
+}
+
+void Display::turn_off() {
+    if (disp_on) {
+        oled.clearDisplay();
+        oled.display();
+        disp_on = false;
+    }
+}
+
+void Display::turn_on() {
+    disp_on = true;
 }
 
 

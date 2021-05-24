@@ -9,6 +9,9 @@
 #include "patternview.h"
 
 
+#define SLEEP_TIME 30000 // ms
+
+
 class UserInterface {
 public:
     UserInterface();
@@ -36,4 +39,6 @@ private:
 
     unsigned short currentPattern;
     bool patternUpdate;
+
+    long last_active;
 };
